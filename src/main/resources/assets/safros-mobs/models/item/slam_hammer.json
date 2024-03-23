@@ -1,0 +1,51 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "safros-mobs:item/slam_hammer",
+		"particle": "safros-mobs:item/slam_hammer"
+	},
+	"elements": [
+		{
+			"from": [7, 0, 7],
+			"to": [9, 24, 9],
+			"faces": {
+				"north": {"uv": [2, 4, 2.5, 10], "texture": "#0"},
+				"east": {"uv": [2.5, 4, 3, 10], "texture": "#0"},
+				"south": {"uv": [5.25, 2, 5.75, 8], "texture": "#0"},
+				"west": {"uv": [5.75, 2, 6.25, 8], "texture": "#0"},
+				"up": {"uv": [0.5, 6.5, 0, 6], "texture": "#0"},
+				"down": {"uv": [1, 6, 0.5, 6.5], "texture": "#0"}
+			}
+		},
+		{
+			"from": [4, 24, 2],
+			"to": [12, 32, 15],
+			"faces": {
+				"north": {"uv": [0, 4, 2, 6], "texture": "#0"},
+				"east": {"uv": [0, 0, 3.25, 2], "texture": "#0"},
+				"south": {"uv": [5.25, 0, 7.25, 2], "texture": "#0"},
+				"west": {"uv": [0, 2, 3.25, 4], "texture": "#0"},
+				"up": {"uv": [5.25, 3.25, 3.25, 0], "texture": "#0"},
+				"down": {"uv": [5.25, 3.25, 3.25, 6.5], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, 0.75, 1.5]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, 0.75, 1.5]
+		},
+		"ground": {
+			"translation": [0, -0.4, 0],
+			"scale": [0.35, 0.35, 0.35]
+		},
+		"gui": {
+			"rotation": [36.55, -44.8, 19.55],
+			"translation": [1.75, -4, 0],
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
+}

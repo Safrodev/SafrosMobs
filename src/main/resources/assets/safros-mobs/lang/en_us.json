@@ -1,0 +1,12 @@
+{
+  "itemGroup.safros-mobs.safros-mobs": "Safro's Mobs",
+
+  "entity.safros-mobs.goblin_grunt": "Goblin Grunt",
+  "entity.safros-mobs.pump_frog": "Pump Frog",
+
+  "item.safros-mobs.slam_hammer": "Slam Hammer",
+  "item.safros-mobs.frog_eye": "Frog Eye",
+  "item.safros-mobs.hammer_shard": "Hammer Shard",
+  "item.safros-mobs.goblin_grunt_spawn_egg": "Goblin Grunt Spawn Egg",
+  "item.safros-mobs.pump_frog_spawn_egg": "Pump Frog Spawn Egg"
+}

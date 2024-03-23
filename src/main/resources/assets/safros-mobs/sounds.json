@@ -1,0 +1,30 @@
+{
+  "goblin_grunt_ambient": {
+    "sounds": [
+      {
+        "name": "safros-mobs:goblin_grunt_ambient"
+      }
+    ]
+  },
+  "goblin_grunt_hurt": {
+    "sounds": [
+      {
+        "name": "safros-mobs:goblin_grunt_hurt"
+      }
+    ]
+  },
+  "goblin_grunt_death": {
+    "sounds": [
+      {
+        "name": "safros-mobs:goblin_grunt_death"
+      }
+    ]
+  },
+  "pump_frog_ambient": {
+    "sounds": [
+      {
+        "name": "safros-mobs:pump_frog_ambient"
+      }
+    ]
+  }
+}

@@ -1,22 +1,39 @@
 package safro.mobs;
 
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.Items;
+import net.minecraft.registry.RegistryKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import safro.mobs.config.SMConfig;
+import safro.mobs.registry.EntityRegistry;
+import safro.mobs.registry.ItemRegistry;
+import safro.mobs.registry.SoundRegistry;
+import safro.saflib.SafLib;
+import software.bernie.geckolib.GeckoLib;
 
 public class SafrosMobs implements ModInitializer {
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
-    public static final Logger LOGGER = LoggerFactory.getLogger("safros-mobs");
+	public static final String MODID = "safros-mobs";
+    public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
+	public static final RegistryKey<ItemGroup> ITEM_GROUP = SafLib.createGroup(MODID);
 
 	@Override
 	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
+		// Config
+		AutoConfig.register(SMConfig.class, JanksonConfigSerializer::new);
 
-		LOGGER.info("Hello Fabric world!");
+		// Registry
+		GeckoLib.initialize();
+		EntityRegistry.init();
+		ItemRegistry.init();
+		SoundRegistry.init();
+
+		// Events
+
+		SafLib.registerAll(ITEM_GROUP, Items.CREEPER_HEAD);
 	}
 }
