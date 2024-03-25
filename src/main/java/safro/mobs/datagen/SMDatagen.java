@@ -13,6 +13,8 @@ import safro.mobs.registry.ItemRegistry;
 
 import java.util.stream.Stream;
 
+import static safro.mobs.registry.ItemRegistry.*;
+
 public class SMDatagen implements DataGeneratorEntrypoint {
 
     @Override
@@ -34,7 +36,7 @@ public class SMDatagen implements DataGeneratorEntrypoint {
 
         @Override
         public void generateItemModels(ItemModelGenerator gen) {
-            Stream<Item> stream = Stream.of(ItemRegistry.FROG_EYE, ItemRegistry.HAMMER_SHARD);
+            Stream<Item> stream = Stream.of(FROG_EYE, HAMMER_SHARD, LEECHING_SPORE);
             stream.forEach(item -> gen.register(item, Models.GENERATED));
         }
     }
