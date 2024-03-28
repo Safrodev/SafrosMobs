@@ -9,5 +9,6 @@ public class RenderRegistry {
         EntityRendererRegistry.register(EntityRegistry.GOBLIN_GRUNT, GoblinGruntEntityRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.PUMP_FROG, PumpFrogEntityRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.FLAPHAWK, FlaphawkEntityRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.MOCKER, MockerEntityRenderer::new);
     }
 }

@@ -1,9 +1,11 @@
 package safro.mobs.entity;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -15,10 +17,11 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -124,15 +127,8 @@ public class FlaphawkEntity extends PathAwareEntity implements GeoEntity {
         }
     }
 
-    protected static boolean isFoliageAbove(ServerWorldAccess world, BlockPos pos) {
-        for (int i = 1; i <= 6; i++) {
-            BlockPos check = pos.up(i);
-            if (world.getBlockState(check).isIn(BlockTags.LEAVES) || world.getBlockState(check.east()).isIn(BlockTags.LEAVES) ||
-                    world.getBlockState(check.west()).isIn(BlockTags.LEAVES) || world.getBlockState(check.north()).isIn(BlockTags.LEAVES) || world.getBlockState(check.south()).isIn(BlockTags.LEAVES)) {
-                return true;
-            }
-        }
-        return false;
+    public static boolean canSpawn(EntityType<FlaphawkEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
+        return world.getDifficulty() != Difficulty.PEACEFUL && (world.getBlockState(pos.down()).isOf(Blocks.GRASS_BLOCK) || spawnReason == SpawnReason.SPAWN_EGG);
     }
 
     @Override

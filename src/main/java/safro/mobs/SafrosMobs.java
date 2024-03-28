@@ -13,6 +13,7 @@ import safro.mobs.config.SMConfig;
 import safro.mobs.registry.EntityRegistry;
 import safro.mobs.registry.ItemRegistry;
 import safro.mobs.registry.SoundRegistry;
+import safro.mobs.registry.TagRegistry;
 import safro.saflib.SafLib;
 import software.bernie.geckolib.GeckoLib;
 
@@ -31,6 +32,7 @@ public class SafrosMobs implements ModInitializer {
 		EntityRegistry.init();
 		ItemRegistry.init();
 		SoundRegistry.init();
+		TagRegistry.init();
 
 		// Events
 
