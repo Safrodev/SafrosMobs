@@ -10,10 +10,7 @@ import net.minecraft.registry.RegistryKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import safro.mobs.config.SMConfig;
-import safro.mobs.registry.EntityRegistry;
-import safro.mobs.registry.ItemRegistry;
-import safro.mobs.registry.SoundRegistry;
-import safro.mobs.registry.TagRegistry;
+import safro.mobs.registry.*;
 import safro.saflib.SafLib;
 import software.bernie.geckolib.GeckoLib;
 
@@ -32,6 +29,7 @@ public class SafrosMobs implements ModInitializer {
 		EntityRegistry.init();
 		ItemRegistry.init();
 		SoundRegistry.init();
+		EffectRegistry.init();
 		TagRegistry.init();
 
 		// Events

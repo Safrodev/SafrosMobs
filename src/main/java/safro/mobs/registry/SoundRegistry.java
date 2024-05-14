@@ -15,6 +15,15 @@ public class SoundRegistry {
     // Pump Frog
     public static final SoundEvent PUMP_FROG_AMBIENT = register("pump_frog_ambient");
 
+    // Leviathan
+    public static final SoundEvent LEVIATHAN_ATTACK = register("leviathan_attack");
+    public static final SoundEvent LEVIATHAN_HURT = register("leviathan_hurt");
+    public static final SoundEvent LEVIATHAN_DEATH = register("leviathan_death");
+
+
+    // Fairy
+    public static final SoundEvent FAIRY_HEAL = register("fairy_heal");
+
     static SoundEvent register(String id) {
         SoundEvent sound = SoundEvent.of(new Identifier(SafrosMobs.MODID, id));
         Registry.register(Registries.SOUND_EVENT, new Identifier(SafrosMobs.MODID, id), sound);

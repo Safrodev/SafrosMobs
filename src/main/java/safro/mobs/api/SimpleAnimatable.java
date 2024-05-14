@@ -17,6 +17,10 @@ public interface SimpleAnimatable extends GeoEntity {
         return 1.0D;
     }
 
+    default boolean hasMoveAnim() {
+        return true;
+    }
+
     default double getAttackAnimSpeed() {
         return 1.0D;
     }
@@ -40,7 +44,7 @@ public interface SimpleAnimatable extends GeoEntity {
 
     static <T extends SimpleAnimatable> AnimationController<T> customWalkIdle(T animatable) {
         return new AnimationController<T>(animatable, "Walk/Idle", 0, state -> {
-            if (state.isMoving()) {
+            if (state.isMoving() && animatable.hasMoveAnim()) {
                 state.getController().setAnimationSpeed(animatable.getMoveAnimSpeed());
                 return state.setAndContinue(DefaultAnimations.WALK);
             }

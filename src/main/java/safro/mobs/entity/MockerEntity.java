@@ -12,9 +12,8 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import safro.mobs.config.SMConfig;
 import safro.mobs.entity.ai.goal.ClonePlayerGoal;
 
 import java.util.Optional;
@@ -64,7 +63,7 @@ public class MockerEntity extends HostileEntity {
             for (EquipmentSlot slot : EquipmentSlot.values()) {
                 if (!player.getEquippedStack(slot).isEmpty()) {
                     this.equipStack(slot, player.getEquippedStack(slot).copy());
-                    this.setEquipmentDropChance(slot, 0.03F);
+                    this.setEquipmentDropChance(slot, SMConfig.get().mockerDropChance);
                 }
             }
 

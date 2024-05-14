@@ -5,12 +5,22 @@
   "entity.safros-mobs.pump_frog": "Pump Frog",
   "entity.safros-mobs.flaphawk": "Flaphawk",
   "entity.safros-mobs.mocker": "Mocker",
+  "entity.safros-mobs.leviathan": "Leviathan",
+  "entity.safros-mobs.thundizard": "Thundizard",
+  "entity.safros-mobs.thunderbolt": "Thunderbolt",
+  "entity.safros-mobs.fairy": "Fairy",
 
   "item.safros-mobs.slam_hammer": "Slam Hammer",
   "item.safros-mobs.frog_eye": "Frog Eye",
   "item.safros-mobs.hammer_shard": "Hammer Shard",
   "item.safros-mobs.leeching_spore": "Leeching Spore",
+  "item.safros-mobs.leviathan_fin": "Leviathan Fin",
+  "item.safros-mobs.pixie_dust": "Pixie Dust",
   "item.safros-mobs.goblin_grunt_spawn_egg": "Goblin Grunt Spawn Egg",
   "item.safros-mobs.pump_frog_spawn_egg": "Pump Frog Spawn Egg",
-  "item.safros-mobs.flaphawk_spawn_egg": "Flaphawk Spawn Egg"
+  "item.safros-mobs.flaphawk_spawn_egg": "Flaphawk Spawn Egg",
+  "item.safros-mobs.mocker_spawn_egg": "Mocker Spawn Egg",
+  "item.safros-mobs.leviathan_spawn_egg": "Leviathan Spawn Egg",
+  "item.safros-mobs.thundizard_spawn_egg": "Thundizard Spawn Egg",
+  "item.safros-mobs.fairy_spawn_egg": "Fairy Spawn Egg"
 }

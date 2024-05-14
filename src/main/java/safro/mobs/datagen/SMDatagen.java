@@ -36,7 +36,7 @@ public class SMDatagen implements DataGeneratorEntrypoint {
 
         @Override
         public void generateItemModels(ItemModelGenerator gen) {
-            Stream<Item> stream = Stream.of(FROG_EYE, HAMMER_SHARD, LEECHING_SPORE);
+            Stream<Item> stream = Stream.of(FROG_EYE, HAMMER_SHARD, LEECHING_SPORE, LEVIATHAN_FIN, PIXIE_DUST);
             stream.forEach(item -> gen.register(item, Models.GENERATED));
         }
     }

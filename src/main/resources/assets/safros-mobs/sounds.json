@@ -26,5 +26,33 @@
         "name": "safros-mobs:pump_frog_ambient"
       }
     ]
+  },
+  "leviathan_attack": {
+    "sounds": [
+      {
+        "name": "safros-mobs:leviathan_attack"
+      }
+    ]
+  },
+  "leviathan_hurt": {
+    "sounds": [
+      {
+        "name": "safros-mobs:leviathan_hurt"
+      }
+    ]
+  },
+  "leviathan_death": {
+    "sounds": [
+      {
+        "name": "safros-mobs:leviathan_death"
+      }
+    ]
+  },
+  "fairy_heal": {
+    "sounds": [
+      {
+        "name": "safros-mobs:fairy_heal"
+      }
+    ]
   }
 }

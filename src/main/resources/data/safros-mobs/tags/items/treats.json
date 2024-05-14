@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:cookie",
+    "minecraft:cake",
+    "minecraft:honey_bottle",
+    "minecraft:pumpkin_pie",
+    "minecraft:sweet_berries"
+  ]
+}
