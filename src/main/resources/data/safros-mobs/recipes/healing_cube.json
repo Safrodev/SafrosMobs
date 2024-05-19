@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FAF",
+    "AGA",
+    "FAF"
+  ],
+  "key": {
+    "F": {
+      "item": "safros-mobs:pixie_dust"
+    },
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "G": {
+      "item": "minecraft:ghast_tear"
+    }
+  },
+  "result": {
+    "item": "safros-mobs:healing_cube"
+  }
+}

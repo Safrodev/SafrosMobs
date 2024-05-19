@@ -67,7 +67,10 @@ public class FairyEntity extends PassiveEntity implements SimpleAnimatable {
         if (!this.isHighUp()) {
             this.setVelocity(this.getVelocity().add(0, 0.08, 0));
         }
+    }
 
+    public void tick() {
+        super.tick();
         if (this.fedTicks > 0) {
             --this.fedTicks;
         } else {
@@ -171,12 +174,12 @@ public class FairyEntity extends PassiveEntity implements SimpleAnimatable {
         }
 
         public void tick() {
-            float speedMod = 1;
+            float speedModifier = 1;
             if (this.state == State.MOVE_TO) {
                 if (FairyEntity.this.horizontalCollision) {
                     float yaw = FairyEntity.this.getYaw();
                     FairyEntity.this.setYaw(yaw + 180.0F);
-                    speedMod = 0.1F;
+                    speedModifier = 0.1F;
                     BlockPos target = FairyEntity.getPosFromGround(FairyEntity.this, FairyEntity.this.getWorld(), FairyEntity.this.getX() + FairyEntity.this.random.nextInt(15) - 7, FairyEntity.this.getZ() + FairyEntity.this.random.nextInt(15) - 7);
                     this.targetX = target.getX();
                     this.targetY = target.getY();
@@ -192,7 +195,7 @@ public class FairyEntity extends PassiveEntity implements SimpleAnimatable {
                     this.state = State.WAIT;
                     FairyEntity.this.setVelocity(FairyEntity.this.getVelocity().multiply(0.5D, 0.5D, 0.5D));
                 } else {
-                    FairyEntity.this.setVelocity(FairyEntity.this.getVelocity().add(d0 / d3 * 0.05D * this.speed * speedMod, d1 / d3 * 0.05D * this.speed * speedMod, d2 / d3 * 0.05D * this.speed * speedMod));
+                    FairyEntity.this.setVelocity(FairyEntity.this.getVelocity().add(d0 / d3 * 0.05D * this.speed * speedModifier, d1 / d3 * 0.05D * this.speed * speedModifier, d2 / d3 * 0.05D * this.speed * speedModifier));
 
                     if (FairyEntity.this.getTarget() == null) {
                         FairyEntity.this.setYaw(-((float) MathHelper.atan2(FairyEntity.this.getVelocity().x, FairyEntity.this.getVelocity().z)) * (180F / (float) Math.PI));

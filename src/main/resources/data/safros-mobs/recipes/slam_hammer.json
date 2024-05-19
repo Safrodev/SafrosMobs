@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HTH",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "H": {
+      "item": "safros-mobs:hammer_shard"
+    },
+    "T": {
+      "item": "safros-mobs:lizard_tongue"
+    }
+  },
+  "result": {
+    "item": "safros-mobs:slam_hammer"
+  }
+}

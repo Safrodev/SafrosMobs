@@ -27,7 +27,7 @@ public class SafrosMobs implements ModInitializer {
 		// Registry
 		GeckoLib.initialize();
 		EntityRegistry.init();
-		ItemRegistry.init();
+		BlockItemRegistry.init();
 		SoundRegistry.init();
 		EffectRegistry.init();
 		TagRegistry.init();

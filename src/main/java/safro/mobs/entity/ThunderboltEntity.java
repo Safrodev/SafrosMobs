@@ -47,7 +47,7 @@ public class ThunderboltEntity extends ProjectileEntity {
         } else {
             this.setVelocity(vec3d.multiply(0.9900000095367432));
             if (!this.hasNoGravity()) {
-                this.setVelocity(this.getVelocity().add(0.0, -0.05999999865889549, 0.0));
+                this.setVelocity(this.getVelocity().add(0.0, -0.01, 0.0));
             }
 
             this.setPosition(d, e, f);

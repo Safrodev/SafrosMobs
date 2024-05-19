@@ -9,11 +9,11 @@ import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.ModelIds;
 import net.minecraft.data.client.Models;
 import net.minecraft.item.Item;
-import safro.mobs.registry.ItemRegistry;
+import safro.mobs.registry.BlockItemRegistry;
 
 import java.util.stream.Stream;
 
-import static safro.mobs.registry.ItemRegistry.*;
+import static safro.mobs.registry.BlockItemRegistry.*;
 
 public class SMDatagen implements DataGeneratorEntrypoint {
 
@@ -31,12 +31,12 @@ public class SMDatagen implements DataGeneratorEntrypoint {
 
         @Override
         public void generateBlockStateModels(BlockStateModelGenerator gen) {
-            ItemRegistry.SPAWN_EGGS.forEach(item -> gen.registerParentedItemModel(item, ModelIds.getMinecraftNamespacedItem("template_spawn_egg")));
+            BlockItemRegistry.SPAWN_EGGS.forEach(item -> gen.registerParentedItemModel(item, ModelIds.getMinecraftNamespacedItem("template_spawn_egg")));
         }
 
         @Override
         public void generateItemModels(ItemModelGenerator gen) {
-            Stream<Item> stream = Stream.of(FROG_EYE, HAMMER_SHARD, LEECHING_SPORE, LEVIATHAN_FIN, PIXIE_DUST);
+            Stream<Item> stream = Stream.of(FROG_EYE, HAMMER_SHARD, LEECHING_SPORE, LEVIATHAN_FIN, PIXIE_DUST, LIZARD_TONGUE);
             stream.forEach(item -> gen.register(item, Models.GENERATED));
         }
     }

@@ -1,5 +1,10 @@
 package safro.mobs.registry;
 
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.Item;
@@ -7,22 +12,29 @@ import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.ToolMaterials;
 import net.minecraft.registry.Registries;
 import safro.mobs.SafrosMobs;
+import safro.mobs.block.HealingCubeBlock;
+import safro.mobs.block.entity.HealingCubeBlockEntity;
 import safro.mobs.item.SlamHammerItem;
 import safro.saflib.registry.BaseBlockItemRegistry;
 
 import java.util.ArrayList;
 
-public class ItemRegistry extends BaseBlockItemRegistry {
+public class BlockItemRegistry extends BaseBlockItemRegistry {
     static { MODID = SafrosMobs.MODID; }
     public static final ArrayList<Item> SPAWN_EGGS = new ArrayList<>();
 
+    public static final Block HEALING_CUBE = register("healing_cube", new HealingCubeBlock(FabricBlockSettings.copyOf(Blocks.AMETHYST_BLOCK).nonOpaque()));
     public static final Item SLAM_HAMMER = register("slam_hammer", new SlamHammerItem(ToolMaterials.IRON, 6, -3.1F, settings()));
 
     public static final Item FROG_EYE = register("frog_eye", new Item(settings()));
     public static final Item HAMMER_SHARD = register("hammer_shard", new Item(settings()));
     public static final Item LEECHING_SPORE = register("leeching_spore", new Item(settings()));
     public static final Item LEVIATHAN_FIN = register("leviathan_fin", new Item(settings()));
+    public static final Item LIZARD_TONGUE = register("lizard_tongue", new Item(settings()));
     public static final Item PIXIE_DUST = register("pixie_dust", new Item(settings()));
+
+    // Block Entities
+    public static final BlockEntityType<HealingCubeBlockEntity> HEALING_CUBE_BLOCK_ENTITY = register("healing_cube", HealingCubeBlockEntity::new, HEALING_CUBE);
 
     public static void init() {
         spawnEgg(EntityRegistry.GOBLIN_GRUNT, 0x0A2D14, 0x40D586);

@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "waterlogged=true": [
+      {
+        "model": "safros-mobs:block/healing_cube"
+      }
+    ],
+    "waterlogged=false": [
+      {
+        "model": "safros-mobs:block/healing_cube"
+      }
+    ]
+  }
+}
