@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.ToolMaterials;
 import net.minecraft.registry.Registries;
+import net.minecraft.util.Rarity;
 import safro.mobs.SafrosMobs;
 import safro.mobs.block.HealingCubeBlock;
 import safro.mobs.block.entity.HealingCubeBlockEntity;
@@ -24,6 +25,7 @@ public class BlockItemRegistry extends BaseBlockItemRegistry {
     public static final ArrayList<Item> SPAWN_EGGS = new ArrayList<>();
 
     public static final Block HEALING_CUBE = register("healing_cube", new HealingCubeBlock(FabricBlockSettings.copyOf(Blocks.AMETHYST_BLOCK).nonOpaque()));
+    public static final Item REAPING_RING = register("reaping_ring", new Item(settings().maxCount(1).rarity(Rarity.UNCOMMON)));
     public static final Item SLAM_HAMMER = register("slam_hammer", new SlamHammerItem(ToolMaterials.IRON, 6, -3.1F, settings()));
 
     public static final Item FROG_EYE = register("frog_eye", new Item(settings()));

@@ -55,7 +55,7 @@ public class GoblinGruntEntity extends HostileEntity implements SimpleAnimatable
     }
 
     public boolean tryAttack(Entity target) {
-        this.attackTicksLeft = 10;
+        this.attackTicksLeft = 20;
         this.getWorld().sendEntityStatus(this, (byte)4);
         float f = (float) this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
         float g = (int)f > 0 ? f / 2.0F + (float)this.random.nextInt((int)f) : f;
@@ -69,7 +69,7 @@ public class GoblinGruntEntity extends HostileEntity implements SimpleAnimatable
 
     public void handleStatus(byte status) {
         if (status == 4) {
-            this.attackTicksLeft = 10;
+            this.attackTicksLeft = 20;
         } else {
             super.handleStatus(status);
         }
@@ -100,7 +100,7 @@ public class GoblinGruntEntity extends HostileEntity implements SimpleAnimatable
 
     @Override
     public boolean isAttackingAnim() {
-        return getAttackTicksLeft() > 0;
+        return this.getAttackTicksLeft() > 0 && this.isAlive();
     }
 
     @Override
@@ -115,6 +115,6 @@ public class GoblinGruntEntity extends HostileEntity implements SimpleAnimatable
 
     @Override
     public double getAttackAnimSpeed() {
-        return 2.0D;
+        return 4.0D;
     }
 }

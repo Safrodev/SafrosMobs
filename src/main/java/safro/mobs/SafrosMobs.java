@@ -34,6 +34,6 @@ public class SafrosMobs implements ModInitializer {
 
 		// Events
 
-		SafLib.registerAll(ITEM_GROUP, Items.CREEPER_HEAD);
+		SafLib.registerAll(ITEM_GROUP, BlockItemRegistry.PIXIE_DUST);
 	}
 }

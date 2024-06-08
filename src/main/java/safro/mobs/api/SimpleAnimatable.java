@@ -32,7 +32,7 @@ public interface SimpleAnimatable extends GeoEntity {
     }
 
     static <T extends SimpleAnimatable> AnimationController<T> customAttack(T animatable, RawAnimation attackAnimation) {
-        return new AnimationController<>(animatable, "Attack", 5, state -> {
+        return new AnimationController<>(animatable, "Attack", 1, state -> {
             if (animatable.isAttackingAnim()) {
                 state.getController().setAnimationSpeed(animatable.getAttackAnimSpeed());
                 return state.setAndContinue(attackAnimation);

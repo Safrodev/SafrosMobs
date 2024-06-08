@@ -23,7 +23,6 @@ public class FlyingEscapeGoal<T extends LivingEntity> extends Goal {
         this.setControls(EnumSet.of(Control.MOVE));
     }
 
-
     public boolean canStart() {
         List<T> list = this.fairy.getWorld().getNonSpectatingEntities(this.targetAvoid, this.fairy.getBoundingBox().expand(this.distance, 3.0D, this.distance));
 

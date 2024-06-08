@@ -33,6 +33,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import safro.mobs.api.SimpleAnimatable;
 import safro.mobs.entity.ai.goal.FlyingEscapeGoal;
+import safro.mobs.entity.ai.goal.FlyingHealGoal;
 import safro.mobs.entity.ai.goal.FlyingWanderGoal;
 import safro.mobs.registry.SoundRegistry;
 import safro.mobs.registry.TagRegistry;
@@ -51,10 +52,11 @@ public class FairyEntity extends PassiveEntity implements SimpleAnimatable {
 
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(1, new FlyingEscapeGoal<>(this, PlayerEntity.class, 10));
+        this.goalSelector.add(1, new FlyingEscapeGoal<>(this, PlayerEntity.class, 10.0F));
         this.goalSelector.add(2, new TemptGoal(this, 1.1D, Ingredient.fromTag(TagRegistry.TREATS), false));
-        this.goalSelector.add(3, new FlyingWanderGoal(this));
-        this.goalSelector.add(4, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.add(3, new FlyingHealGoal(this, 10.0F));
+        this.goalSelector.add(4, new FlyingWanderGoal(this));
+        this.goalSelector.add(5, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.add(5, new LookAroundGoal(this));
     }
 
@@ -87,10 +89,7 @@ public class FairyEntity extends PassiveEntity implements SimpleAnimatable {
                 stack.decrement(1);
             }
 
-            for (int i = 0; i < 15; i++) {
-                this.getWorld().addParticle(ParticleTypes.HAPPY_VILLAGER, this.getParticleX(1.0D), this.getRandomBodyY() + 0.5D, this.getParticleZ(1.0D), 0.0D, 0.0D, 0.0D);
-            }
-            this.getWorld().playSound(player, player.getBlockPos(), SoundRegistry.FAIRY_HEAL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+            this.getWorld().sendEntityStatus(this, (byte)13);
             this.fedTicks = 100;
             return ActionResult.SUCCESS;
         }
@@ -139,6 +138,18 @@ public class FairyEntity extends PassiveEntity implements SimpleAnimatable {
 
     protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_BAT_DEATH;
+    }
+
+    @Override
+    public void handleStatus(byte status) {
+        if (status == 13) {
+            for (int i = 0; i < 15; i++) {
+                this.getWorld().addParticle(ParticleTypes.HAPPY_VILLAGER, this.getParticleX(1.0D), this.getRandomBodyY() + 0.5D, this.getParticleZ(1.0D), 0.0D, 0.0D, 0.0D);
+            }
+            this.getWorld().playSound(null, this.getBlockPos(), SoundRegistry.FAIRY_HEAL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+        } else {
+            super.handleStatus(status);
+        }
     }
 
     @Nullable

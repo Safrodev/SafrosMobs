@@ -2,7 +2,7 @@ package safro.mobs;
 
 import net.fabricmc.api.ClientModInitializer;
 import safro.mobs.client.ParticleRegistry;
-import safro.mobs.client.render.RenderRegistry;
+import safro.mobs.client.RenderRegistry;
 
 public class SafrosMobsClient implements ClientModInitializer {
 

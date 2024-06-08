@@ -44,7 +44,7 @@ public class EntityRegistry extends BaseEntityRegistry {
         BiomeModifications.addSpawn(BiomeSelectors.tag(TagRegistry.HAS_FLAPHAWK), SpawnGroup.CREATURE, FLAPHAWK, SMConfig.get().flaphawkWeight, 1, 1);
         BiomeModifications.addSpawn(BiomeSelectors.foundInTheEnd(), SpawnGroup.MONSTER, MOCKER, SMConfig.get().mockerWeight, 1, 1);
         BiomeModifications.addSpawn(BiomeSelectors.tag(ConventionalBiomeTags.OCEAN), SpawnGroup.WATER_CREATURE, LEVIATHAN, SMConfig.get().leviathanWeight, 1, 1);
-        BiomeModifications.addSpawn(BiomeSelectors.tag(ConventionalBiomeTags.FOREST), SpawnGroup.CREATURE, THUNDIZARD, SMConfig.get().thundizardWeight, 1, 3);
+        BiomeModifications.addSpawn(BiomeSelectors.tag(TagRegistry.HAS_THUNDIZARD), SpawnGroup.CREATURE, THUNDIZARD, SMConfig.get().thundizardWeight, 1, 3);
         BiomeModifications.addSpawn(BiomeSelectors.tag(ConventionalBiomeTags.FOREST), SpawnGroup.CREATURE, FAIRY, SMConfig.get().fairyWeight, 2, 4);
     }
 

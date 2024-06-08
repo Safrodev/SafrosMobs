@@ -13,7 +13,7 @@ public class SMConfig implements ConfigData {
     @Comment("Default: 35")
     @ConfigEntry.Category("spawn_weights")
     @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-    public int goblinGruntWeight = 35;
+    public int goblinGruntWeight = 40;
 
     @Comment("Default: 10")
     @ConfigEntry.Category("spawn_weights")

@@ -1,7 +1,8 @@
-package safro.mobs.client.render;
+package safro.mobs.client;
 
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
+import safro.mobs.client.render.*;
 import safro.mobs.registry.EntityRegistry;
 
 public class RenderRegistry {
