@@ -11,7 +11,11 @@ import net.minecraft.world.WorldAccess;
 public class SMUtil {
 
     public static boolean isValidNaturalSpawn(EntityType<? extends PathAwareEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
-        return world.getBlockState(pos.down()).isIn(BlockTags.ANIMALS_SPAWNABLE_ON) && world.getBaseLightLevel(pos, 0) > 8;
+        return world.getBlockState(pos.down()).isIn(BlockTags.ANIMALS_SPAWNABLE_ON) && isValidSpawn(type, world, spawnReason, pos, random);
+    }
+
+    public static boolean isValidSpawn(EntityType<? extends PathAwareEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
+        return world.getBaseLightLevel(pos, 0) > 8;
     }
 
     public static float capMax(float amount, float max) {

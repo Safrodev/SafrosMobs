@@ -35,7 +35,8 @@ public class EntityRegistry extends BaseEntityRegistry {
         SpawnRestriction.register(FLAPHAWK, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FlaphawkEntity::canSpawn);
         SpawnRestriction.register(MOCKER, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HostileEntity::canSpawnIgnoreLightLevel);
         SpawnRestriction.register(LEVIATHAN, SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WaterCreatureEntity::canSpawn);
-        SpawnRestriction.register(THUNDIZARD, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SMUtil::isValidNaturalSpawn);
+        SpawnRestriction.register(THUNDIZARD, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SMUtil::isValidSpawn);
+        SpawnRestriction.register(FAIRY, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SMUtil::isValidNaturalSpawn);
     }
 
     public static void initSpawns() {

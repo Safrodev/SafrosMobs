@@ -38,7 +38,7 @@ public class SMConfig implements ConfigData {
     @Comment("Default: 10")
     @ConfigEntry.Category("spawn_weights")
     @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-    public int thundizardWeight = 10;
+    public int thundizardWeight = 14;
 
     @Comment("Default: 12")
     @ConfigEntry.Category("spawn_weights")

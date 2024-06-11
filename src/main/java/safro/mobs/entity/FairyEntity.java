@@ -10,6 +10,9 @@ import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
@@ -42,6 +45,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class FairyEntity extends PassiveEntity implements SimpleAnimatable {
+    private static final TrackedData<Integer> HEAL_COOLDOWN = DataTracker.registerData(FairyEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     public int fedTicks;
 
@@ -64,6 +68,11 @@ public class FairyEntity extends PassiveEntity implements SimpleAnimatable {
         return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 6.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.29D);
     }
 
+    protected void initDataTracker() {
+        super.initDataTracker();
+        this.dataTracker.startTracking(HEAL_COOLDOWN, 0);
+    }
+
     public void tickMovement() {
         super.tickMovement();
         if (!this.isHighUp()) {
@@ -77,6 +86,10 @@ public class FairyEntity extends PassiveEntity implements SimpleAnimatable {
             --this.fedTicks;
         } else {
             this.fedTicks = 0;
+        }
+
+        if (this.getHealCooldown() > 0) {
+            this.setHealCooldown(this.getHealCooldown() - 1);
         }
     }
 
@@ -150,6 +163,14 @@ public class FairyEntity extends PassiveEntity implements SimpleAnimatable {
         } else {
             super.handleStatus(status);
         }
+    }
+
+    public int getHealCooldown() {
+        return this.dataTracker.get(HEAL_COOLDOWN);
+    }
+
+    public void setHealCooldown(int c) {
+        this.dataTracker.set(HEAL_COOLDOWN, c);
     }
 
     @Nullable

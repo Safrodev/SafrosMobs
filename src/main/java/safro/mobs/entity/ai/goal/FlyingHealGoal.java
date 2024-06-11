@@ -1,15 +1,11 @@
 package safro.mobs.entity.ai.goal;
 
-import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.NoPenaltyTargeting;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 import safro.mobs.entity.FairyEntity;
-import safro.mobs.registry.SoundRegistry;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -27,6 +23,10 @@ public class FlyingHealGoal extends Goal {
     }
 
     public boolean canStart() {
+        if (this.fairy.getHealCooldown() > 0) {
+            return false;
+        }
+
         List<LivingEntity> list = this.fairy.getWorld().getNonSpectatingEntities(LivingEntity.class, this.fairy.getBoundingBox().expand(this.range, 8.0D, this.range));
         list = list.stream().filter(entity -> !(entity instanceof HostileEntity)).filter(entity -> entity.getHealth() < entity.getMaxHealth()).toList();
 
@@ -50,7 +50,7 @@ public class FlyingHealGoal extends Goal {
     }
 
     public boolean shouldContinue() {
-        return this.targetPos != null && this.target != null && this.target.isAlive() && this.fairy.squaredDistanceTo(this.target) < 1;
+        return this.targetPos != null && this.target != null && this.target.isAlive() && this.fairy.squaredDistanceTo(this.target) > 2;
     }
 
     public void start() {
@@ -58,9 +58,17 @@ public class FlyingHealGoal extends Goal {
         this.fairy.getLookControl().lookAt(this.targetPos.x, this.targetPos.y, this.targetPos.z, 180.0F, 20.0F);
     }
 
+    public void tick() {
+        this.fairy.getMoveControl().moveTo(this.targetPos.x, this.targetPos.y, this.targetPos.z, 1D);
+        this.fairy.getLookControl().lookAt(this.targetPos.x, this.targetPos.y, this.targetPos.z, 180.0F, 20.0F);
+    }
+
     public void stop() {
-        this.target.heal(4.0F);
-        this.fairy.getWorld().sendEntityStatus(this.fairy, (byte)13);
+        if (this.fairy.squaredDistanceTo(this.target) <= 2) {
+            this.target.heal(4.0F);
+            this.fairy.getWorld().sendEntityStatus(this.fairy, (byte) 13);
+        }
         this.target = null;
+        this.fairy.setHealCooldown(200);
     }
 }
