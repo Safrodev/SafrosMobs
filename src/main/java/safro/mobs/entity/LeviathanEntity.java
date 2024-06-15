@@ -42,6 +42,7 @@ public class LeviathanEntity extends WaterCreatureEntity implements GeoEntity {
         super(entityType, world);
         this.moveControl = new AquaticMoveControl(this, 85, 10, 0.02F, 0.1F, true);
         this.lookControl = new YawAdjustingLookControl(this, 10);
+        this.experiencePoints = 8;
     }
 
     protected void initGoals() {

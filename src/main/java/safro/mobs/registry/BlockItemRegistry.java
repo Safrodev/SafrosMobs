@@ -1,7 +1,6 @@
 package safro.mobs.registry;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
@@ -46,6 +45,7 @@ public class BlockItemRegistry extends BaseBlockItemRegistry {
         spawnEgg(EntityRegistry.LEVIATHAN, 0x2F749C, 0x39E38E);
         spawnEgg(EntityRegistry.THUNDIZARD, 0xC8A964, 0xF1D548);
         spawnEgg(EntityRegistry.FAIRY, 0xF75B94, 0xFFDF7B);
+        spawnEgg(EntityRegistry.ASCENDANT, 0x292116, 0xDD511C);
     }
 
     private static <T extends MobEntity> void spawnEgg(EntityType<T> type, int primaryColor, int secondaryColor) {

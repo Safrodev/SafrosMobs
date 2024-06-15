@@ -32,6 +32,7 @@ public class GoblinGruntEntity extends HostileEntity implements SimpleAnimatable
     public GoblinGruntEntity(EntityType<? extends GoblinGruntEntity> entityType, World world) {
         super(entityType, world);
         this.setStepHeight(1.0F);
+        this.experiencePoints = 10;
     }
 
     protected void initGoals() {

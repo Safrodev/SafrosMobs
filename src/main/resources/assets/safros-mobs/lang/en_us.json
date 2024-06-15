@@ -9,6 +9,7 @@
   "entity.safros-mobs.thundizard": "Thundizard",
   "entity.safros-mobs.thunderbolt": "Thunderbolt",
   "entity.safros-mobs.fairy": "Fairy",
+  "entity.safros-mobs.ascendant": "Ascendant",
 
   "item.safros-mobs.slam_hammer": "Slam Hammer",
   "item.safros-mobs.frog_eye": "Frog Eye",
@@ -25,6 +26,7 @@
   "item.safros-mobs.leviathan_spawn_egg": "Leviathan Spawn Egg",
   "item.safros-mobs.thundizard_spawn_egg": "Thundizard Spawn Egg",
   "item.safros-mobs.fairy_spawn_egg": "Fairy Spawn Egg",
+  "item.safros-mobs.ascendant_spawn_egg": "Ascendant Spawn Egg",
 
   "block.safros-mobs.healing_cube": "Healing Cube"
 }

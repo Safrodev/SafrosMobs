@@ -16,5 +16,6 @@ public class RenderRegistry {
         EntityRendererRegistry.register(EntityRegistry.THUNDERBOLT, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.THUNDIZARD, ThundizardEntityRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.FAIRY, FairyEntityRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.ASCENDANT, AscendantEntityRenderer::new);
     }
 }
