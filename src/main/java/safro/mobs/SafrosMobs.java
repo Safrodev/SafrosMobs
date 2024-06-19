@@ -5,7 +5,6 @@ import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.item.ItemGroup;
-import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +32,7 @@ public class SafrosMobs implements ModInitializer {
 		TagRegistry.init();
 
 		// Events
+		CommonEvents.init();
 
 		SafLib.registerAll(ITEM_GROUP, BlockItemRegistry.PIXIE_DUST);
 	}

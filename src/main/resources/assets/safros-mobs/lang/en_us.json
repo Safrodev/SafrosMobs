@@ -19,6 +19,8 @@
   "item.safros-mobs.lizard_tongue": "Lizard Tongue",
   "item.safros-mobs.pixie_dust": "Pixie Dust",
   "item.safros-mobs.reaping_ring": "Reaping Ring",
+  "item.safros-mobs.blazing_sphere": "Blazing Sphere",
+  "item.safros-mobs.blaze_runners": "Blaze Runners",
   "item.safros-mobs.goblin_grunt_spawn_egg": "Goblin Grunt Spawn Egg",
   "item.safros-mobs.pump_frog_spawn_egg": "Pump Frog Spawn Egg",
   "item.safros-mobs.flaphawk_spawn_egg": "Flaphawk Spawn Egg",
@@ -28,5 +30,10 @@
   "item.safros-mobs.fairy_spawn_egg": "Fairy Spawn Egg",
   "item.safros-mobs.ascendant_spawn_egg": "Ascendant Spawn Egg",
 
-  "block.safros-mobs.healing_cube": "Healing Cube"
+  "block.safros-mobs.healing_cube": "Healing Cube",
+
+  "text.safros-mobs.healing_cube": "Applies regeneration to all players nearby",
+  "text.safros-mobs.reaping_ring": "Grants life steal upon damaging mobs",
+  "text.safros-mobs.slam_hammer": "Stuns enemies and slams them to the ground",
+  "text.safros-mobs.blaze_runners": "Grants extra jump height and distance"
 }

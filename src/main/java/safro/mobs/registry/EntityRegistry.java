@@ -27,7 +27,7 @@ public class EntityRegistry extends BaseEntityRegistry {
     public static final EntityType<LeviathanEntity> LEVIATHAN = register("leviathan", FabricEntityTypeBuilder.create(SpawnGroup.WATER_CREATURE, LeviathanEntity::new).dimensions(EntityDimensions.fixed(1.6F, 1.0F)).trackRangeChunks(10).build());
     public static final EntityType<ThundizardEntity> THUNDIZARD = register("thundizard", FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ThundizardEntity::new).dimensions(EntityDimensions.fixed(0.4F, 0.3F)).trackRangeChunks(8).build());
     public static final EntityType<FairyEntity> FAIRY = register("fairy", FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, FairyEntity::new).dimensions(EntityDimensions.fixed(0.5F, 1.2F)).trackRangeChunks(8).build());
-    public static final EntityType<AscendantEntity> ASCENDANT = register("ascendant", FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, AscendantEntity::new).dimensions(EntityDimensions.fixed(0.6F, 1.8F)).trackRangeChunks(8).fireImmune().build());
+    public static final EntityType<AscendantEntity> ASCENDANT = register("ascendant", FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, AscendantEntity::new).dimensions(EntityDimensions.fixed(0.7F, 2.0F)).trackRangeChunks(8).fireImmune().build());
 
     public static final EntityType<ThunderboltEntity> THUNDERBOLT = register("thunderbolt", FabricEntityTypeBuilder.<ThunderboltEntity>create(SpawnGroup.MISC, ThunderboltEntity::new).dimensions(EntityDimensions.fixed(0.3F, 0.3F)).trackRangeChunks(4).trackedUpdateRate(10).build());
 

@@ -9,5 +9,7 @@ public class AscendantEntityRenderer extends GeoEntityRenderer<AscendantEntity> 
 
     public AscendantEntityRenderer(EntityRendererFactory.Context ctx) {
         super(ctx, new AscendantEntityModel());
+        this.scaleWidth = 1.5F;
+        this.scaleHeight = 1.5F;
     }
 }

@@ -28,7 +28,7 @@ public class FlyingHealGoal extends Goal {
         }
 
         List<LivingEntity> list = this.fairy.getWorld().getNonSpectatingEntities(LivingEntity.class, this.fairy.getBoundingBox().expand(this.range, 8.0D, this.range));
-        list = list.stream().filter(entity -> !(entity instanceof HostileEntity)).filter(entity -> entity.getHealth() < entity.getMaxHealth()).toList();
+        list = list.stream().filter(entity -> !(entity instanceof HostileEntity)).filter(entity -> entity.getHealth() < entity.getMaxHealth()).filter(entity -> entity != this.fairy).toList();
 
         if (!list.isEmpty()) {
             this.target = list.get(0);
@@ -64,7 +64,7 @@ public class FlyingHealGoal extends Goal {
     }
 
     public void stop() {
-        if (this.fairy.squaredDistanceTo(this.target) <= 2) {
+        if (this.fairy.squaredDistanceTo(this.target) <= 3) {
             this.target.heal(4.0F);
             this.fairy.getWorld().sendEntityStatus(this.fairy, (byte) 13);
         }
