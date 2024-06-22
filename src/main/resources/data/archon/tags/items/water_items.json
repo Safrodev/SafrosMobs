@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "safros-mobs:leviathan_fin"
+    {
+      "id": "safros-mobs:leviathan_fin",
+      "required": false
+    }
   ]
 }

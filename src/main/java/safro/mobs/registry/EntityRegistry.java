@@ -38,6 +38,7 @@ public class EntityRegistry extends BaseEntityRegistry {
         SpawnRestriction.register(LEVIATHAN, SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WaterCreatureEntity::canSpawn);
         SpawnRestriction.register(THUNDIZARD, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SMUtil::isValidSpawn);
         SpawnRestriction.register(FAIRY, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SMUtil::isValidNaturalSpawn);
+        SpawnRestriction.register(ASCENDANT, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HostileEntity::canSpawnIgnoreLightLevel);
     }
 
     public static void initSpawns() {
@@ -48,6 +49,7 @@ public class EntityRegistry extends BaseEntityRegistry {
         BiomeModifications.addSpawn(BiomeSelectors.tag(ConventionalBiomeTags.OCEAN), SpawnGroup.WATER_CREATURE, LEVIATHAN, SMConfig.get().leviathanWeight, 1, 1);
         BiomeModifications.addSpawn(BiomeSelectors.tag(TagRegistry.HAS_THUNDIZARD), SpawnGroup.CREATURE, THUNDIZARD, SMConfig.get().thundizardWeight, 1, 3);
         BiomeModifications.addSpawn(BiomeSelectors.tag(ConventionalBiomeTags.FOREST), SpawnGroup.CREATURE, FAIRY, SMConfig.get().fairyWeight, 2, 4);
+        BiomeModifications.addSpawn(BiomeSelectors.tag(ConventionalBiomeTags.IN_NETHER), SpawnGroup.MONSTER, ASCENDANT, SMConfig.get().ascendantWeight, 1, 1);
     }
 
     public static void init() {

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "F F",
+    "LLL",
+    " P "
+  ],
+  "key": {
+    "F": {
+      "item": "safros-mobs:leviathan_fin"
+    },
+    "P": {
+      "item": "minecraft:prismarine_shard"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    }
+  },
+  "result": {
+    "item": "safros-mobs:glide_belt"
+  }
+}

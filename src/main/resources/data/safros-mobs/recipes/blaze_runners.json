@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " F ",
+    "BIB"
+  ],
+  "key": {
+    "B": {
+      "item": "safros-mobs:blazing_sphere"
+    },
+    "I": {
+      "item": "minecraft:iron_boots"
+    },
+    "F": {
+      "item": "safros-mobs:frog_eye"
+    }
+  },
+  "result": {
+    "item": "safros-mobs:blaze_runners"
+  }
+}

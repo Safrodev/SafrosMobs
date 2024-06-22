@@ -11,9 +11,12 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import safro.mobs.api.SimpleAnimatable;
 import safro.mobs.entity.ai.goal.FirestormGoal;
+import safro.mobs.registry.SoundRegistry;
 import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -44,7 +47,7 @@ public class AscendantEntity extends HostileEntity implements SimpleAnimatable {
     }
 
     public static DefaultAttributeContainer.Builder createAscendantAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23000000417232513D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 48.0D);
+        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 24.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23000000417232513D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 48.0D);
     }
 
     @Override
@@ -71,6 +74,16 @@ public class AscendantEntity extends HostileEntity implements SimpleAnimatable {
     @Override
     public boolean hurtByWater() {
         return true;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.ENTITY_BLAZE_BURN;
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.BLOCK_CAMPFIRE_CRACKLE;
     }
 
     public void setAttacking(boolean bl) {

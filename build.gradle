@@ -24,6 +24,8 @@ repositories {
 			includeGroup("com.eliotlash.mclib")
 		}
 	}
+
+	maven { url 'https://maven.ladysnake.org/releases' }
 }
 
 dependencies {
@@ -47,6 +49,9 @@ dependencies {
 
 	// Geckolib
 	modImplementation "software.bernie.geckolib:geckolib-fabric-1.20.1:${project.geckolib_version}"
+
+	// Trinkets (Runtime only)
+	modCompileOnly modRuntimeOnly("dev.emi:trinkets:${project.trinkets_version}")
 }
 
 loom {

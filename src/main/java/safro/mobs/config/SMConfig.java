@@ -45,6 +45,11 @@ public class SMConfig implements ConfigData {
     @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
     public int fairyWeight = 12;
 
+    @Comment("Default: 10")
+    @ConfigEntry.Category("spawn_weights")
+    @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+    public int ascendantWeight = 4;
+
 
     @Comment("Default: 0.01 (Must be greater than 0 and at most 1)")
     @ConfigEntry.Category("misc")

@@ -148,6 +148,7 @@ public class LeviathanEntity extends WaterCreatureEntity implements GeoEntity {
         controllers.add(DefaultAnimations.genericSwimController(this));
         controllers.add(new AnimationController<>(this, "Attack", 5, state -> {
             if (this.isAttacking()) {
+                state.getController().setAnimationSpeed(2.0D);
                 return state.setAndContinue(DefaultAnimations.ATTACK_BITE);
             }
             state.getController().forceAnimationReset();

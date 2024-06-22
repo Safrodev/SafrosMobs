@@ -7,6 +7,8 @@ import net.minecraft.entity.ai.goal.LookAroundGoal;
 import net.minecraft.entity.ai.goal.LookAtEntityGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
+import net.minecraft.entity.ai.pathing.BirdNavigation;
+import net.minecraft.entity.ai.pathing.EntityNavigation;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -59,13 +61,21 @@ public class FairyEntity extends PassiveEntity implements SimpleAnimatable {
         this.goalSelector.add(1, new FlyingEscapeGoal<>(this, PlayerEntity.class, 10.0F));
         this.goalSelector.add(2, new TemptGoal(this, 1.1D, Ingredient.fromTag(TagRegistry.TREATS), false));
         this.goalSelector.add(3, new FlyingHealGoal(this, 10.0F));
-        this.goalSelector.add(4, new FlyingWanderGoal(this));
-        this.goalSelector.add(5, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.add(5, new LookAroundGoal(this));
+        this.goalSelector.add(6, new FlyingWanderGoal(this));
+        this.goalSelector.add(7, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.add(8, new LookAroundGoal(this));
     }
 
     public static DefaultAttributeContainer.Builder createFairyAttributes() {
         return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 6.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.29D);
+    }
+
+    protected EntityNavigation createNavigation(World world) {
+        BirdNavigation birdNavigation = new BirdNavigation(this, world);
+        birdNavigation.setCanPathThroughDoors(false);
+        birdNavigation.setCanSwim(true);
+        birdNavigation.setCanEnterOpenDoors(true);
+        return birdNavigation;
     }
 
     protected void initDataTracker() {

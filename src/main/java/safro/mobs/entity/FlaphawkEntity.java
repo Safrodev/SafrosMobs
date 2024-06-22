@@ -15,6 +15,7 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.PathAwareEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.DamageTypeTags;
@@ -88,7 +89,7 @@ public class FlaphawkEntity extends PathAwareEntity implements GeoEntity {
 
     @Override
     public boolean damage(DamageSource source, float amount) {
-        if (this.isClosed() && (source.getSource() instanceof ProjectileEntity || source.isIn(DamageTypeTags.IS_PROJECTILE))) {
+        if (this.isClosed() && (source.getSource() instanceof ProjectileEntity || source.isIn(DamageTypeTags.IS_PROJECTILE) || source.getAttacker() instanceof PlayerEntity)) {
             return false;
         }
         return super.damage(source, amount);
