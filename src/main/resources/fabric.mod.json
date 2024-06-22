@@ -8,7 +8,7 @@
 		"Safro"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
+		"homepage": "https://www.curseforge.com/minecraft/mc-mods/safros-mobs",
 		"sources": "https://github.com/Safrodev/SafrosMobs"
 	},
 	"license": "All Rights Reserved",
@@ -29,7 +29,7 @@
 		"safros-mobs.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.15.7",
+		"fabricloader": ">=0.15.11",
 		"minecraft": "~1.20.1",
 		"java": ">=17",
 		"fabric-api": "*"
