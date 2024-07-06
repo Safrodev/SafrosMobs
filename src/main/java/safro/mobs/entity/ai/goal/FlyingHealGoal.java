@@ -1,6 +1,5 @@
 package safro.mobs.entity.ai.goal;
 
-import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.pathing.EntityNavigation;
@@ -59,7 +58,7 @@ public class FlyingHealGoal extends Goal {
     }
 
     private boolean isValid(LivingEntity entity) {
-        if (entity instanceof HostileEntity || entity instanceof FairyEntity || entity.getGroup().equals(EntityGroup.UNDEAD)) {
+        if (entity instanceof HostileEntity || entity instanceof FairyEntity) {
             return false;
         }
         return entity.isAlive() && entity.getHealth() < entity.getMaxHealth();

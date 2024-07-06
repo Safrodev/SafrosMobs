@@ -1,10 +1,10 @@
 package safro.mobs.config;
 
-import blue.endless.jankson.Comment;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
+import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 import safro.mobs.SafrosMobs;
 
 @Config(name = SafrosMobs.MODID)

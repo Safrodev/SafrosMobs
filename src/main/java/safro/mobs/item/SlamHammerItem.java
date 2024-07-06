@@ -11,8 +11,8 @@ import safro.mobs.registry.EffectRegistry;
 
 public class SlamHammerItem extends SwordItem {
 
-    public SlamHammerItem(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
-        super(toolMaterial, attackDamage, attackSpeed, settings);
+    public SlamHammerItem(ToolMaterial toolMaterial, Settings settings) {
+        super(toolMaterial, settings);
     }
 
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {

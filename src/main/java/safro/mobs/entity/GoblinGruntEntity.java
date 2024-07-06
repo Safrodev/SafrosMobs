@@ -1,5 +1,6 @@
 package safro.mobs.entity;
 
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -13,6 +14,7 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -21,8 +23,8 @@ import net.minecraft.world.World;
 import safro.mobs.api.SimpleAnimatable;
 import safro.mobs.registry.SoundRegistry;
 import software.bernie.geckolib.constant.DefaultAnimations;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class GoblinGruntEntity extends HostileEntity implements SimpleAnimatable {
@@ -31,7 +33,6 @@ public class GoblinGruntEntity extends HostileEntity implements SimpleAnimatable
 
     public GoblinGruntEntity(EntityType<? extends GoblinGruntEntity> entityType, World world) {
         super(entityType, world);
-        this.setStepHeight(1.0F);
         this.experiencePoints = 10;
     }
 
@@ -47,7 +48,7 @@ public class GoblinGruntEntity extends HostileEntity implements SimpleAnimatable
     }
 
     public static DefaultAttributeContainer.Builder createGoblinGruntAttributes() {
-        return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25D).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D);
+        return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25D).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0D).add(EntityAttributes.GENERIC_STEP_HEIGHT, 1.0D);
     }
 
     public void tickMovement() {
@@ -62,10 +63,13 @@ public class GoblinGruntEntity extends HostileEntity implements SimpleAnimatable
         this.getWorld().sendEntityStatus(this, (byte)4);
         float f = (float) this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
         float g = (int)f > 0 ? f / 2.0F + (float)this.random.nextInt((int)f) : f;
-        boolean bl = target.damage(this.getDamageSources().mobAttack(this), g);
+        DamageSource source = this.getDamageSources().mobAttack(this);
+        boolean bl = target.damage(source, g);
         if (bl) {
             target.setVelocity(target.getVelocity().add(0.0D, 0.2D, 0.0D));
-            this.applyDamageEffects(this, target);
+            if (this.getWorld() instanceof ServerWorld serverWorld) {
+                EnchantmentHelper.onTargetDamaged(serverWorld, target, source);
+            }
         }
         return bl;
     }

@@ -16,10 +16,9 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import safro.mobs.api.SimpleAnimatable;
 import safro.mobs.entity.ai.goal.FirestormGoal;
-import safro.mobs.registry.SoundRegistry;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.constant.DefaultAnimations;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class AscendantEntity extends HostileEntity implements SimpleAnimatable {
@@ -33,7 +32,6 @@ public class AscendantEntity extends HostileEntity implements SimpleAnimatable {
         this.setPathfindingPenalty(PathNodeType.DANGER_FIRE, 0.0F);
         this.setPathfindingPenalty(PathNodeType.DAMAGE_FIRE, 0.0F);
         this.experiencePoints = 10;
-        this.setStepHeight(1.0F);
     }
 
     protected void initGoals() {
@@ -47,13 +45,13 @@ public class AscendantEntity extends HostileEntity implements SimpleAnimatable {
     }
 
     public static DefaultAttributeContainer.Builder createAscendantAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 24.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23000000417232513D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 48.0D);
+        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 24.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23000000417232513D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 48.0D).add(EntityAttributes.GENERIC_STEP_HEIGHT, 1.0D);
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(ATTACKING, false);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(ATTACKING, false);
     }
 
     @Override

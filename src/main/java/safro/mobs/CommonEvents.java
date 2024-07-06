@@ -1,18 +1,17 @@
 package safro.mobs;
 
-import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistry;
+import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.potion.Potions;
+import net.minecraft.recipe.BrewingRecipeRegistry;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import safro.mobs.compat.TrinketsCompat;
 import safro.mobs.registry.BlockItemRegistry;
 import safro.mobs.util.SMUtil;
 import safro.saflib.event.EntityTickEvents;
@@ -24,14 +23,14 @@ public class CommonEvents {
     public static void init() {
         EntityTickEvents.PLAYER.register(CommonEvents::playerTick);
 
-        registerPotions();
+        FabricBrewingRecipeRegistryBuilder.BUILD.register(CommonEvents::registerPotions);
         FuelRegistry.INSTANCE.add(BlockItemRegistry.BLAZING_SPHERE, 2400);
     }
 
-    public static void registerPotions() {
-        FabricBrewingRecipeRegistry.registerPotionRecipe(Potions.AWKWARD, Ingredient.ofItems(BlockItemRegistry.PIXIE_DUST), Potions.STRONG_REGENERATION);
-        FabricBrewingRecipeRegistry.registerPotionRecipe(Potions.AWKWARD, Ingredient.ofItems(BlockItemRegistry.FROG_EYE), Potions.STRONG_LEAPING);
-        FabricBrewingRecipeRegistry.registerPotionRecipe(Potions.AWKWARD, Ingredient.ofItems(BlockItemRegistry.LEECHING_SPORE), Potions.LONG_POISON);
+    public static void registerPotions(BrewingRecipeRegistry.Builder builder) {
+        builder.registerPotionRecipe(Potions.AWKWARD, Ingredient.ofItems(BlockItemRegistry.PIXIE_DUST), Potions.STRONG_REGENERATION);
+        builder.registerPotionRecipe(Potions.AWKWARD, Ingredient.ofItems(BlockItemRegistry.FROG_EYE), Potions.STRONG_LEAPING);
+        builder.registerPotionRecipe(Potions.AWKWARD, Ingredient.ofItems(BlockItemRegistry.LEECHING_SPORE), Potions.LONG_POISON);
     }
 
     public static void playerTick(PlayerEntity player) {
@@ -60,11 +59,11 @@ public class CommonEvents {
     }
 
     private static boolean hasRing(PlayerEntity player) {
-        if (FabricLoader.getInstance().isModLoaded("trinkets")) {
-            if (TrinketsCompat.hasTrinket(player, BlockItemRegistry.REAPING_RING)) {
-                return true;
-            }
-        }
+//        if (FabricLoader.getInstance().isModLoaded("trinkets")) {
+//            if (TrinketsCompat.hasTrinket(player, BlockItemRegistry.REAPING_RING)) {
+//                return true;
+//            }
+//        }
         return player.getInventory().containsAny(Set.of(BlockItemRegistry.REAPING_RING));
     }
 }

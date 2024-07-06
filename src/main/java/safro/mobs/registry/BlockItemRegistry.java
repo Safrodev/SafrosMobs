@@ -8,9 +8,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
-import net.minecraft.util.Rarity;
 import safro.mobs.SafrosMobs;
-import safro.mobs.api.SMMaterials;
 import safro.mobs.block.HealingCubeBlock;
 import safro.mobs.block.entity.HealingCubeBlockEntity;
 import safro.mobs.item.SlamHammerItem;
@@ -24,8 +22,8 @@ public class BlockItemRegistry extends BaseBlockItemRegistry {
 
     public static final Block HEALING_CUBE = register("healing_cube", new HealingCubeBlock(FabricBlockSettings.copyOf(Blocks.AMETHYST_BLOCK).nonOpaque()));
     public static final Item REAPING_RING = register("reaping_ring", new Item(settings().maxCount(1)));
-    public static final Item SLAM_HAMMER = register("slam_hammer", new SlamHammerItem(ToolMaterials.IRON, 6, -3.1F, settings()));
-    public static final Item BLAZE_RUNNERS = register("blaze_runners", new ArmorItem(SMMaterials.BLAZE_RUNNERS, ArmorItem.Type.BOOTS, settings()));
+    public static final Item SLAM_HAMMER = register("slam_hammer", new SlamHammerItem(ToolMaterials.IRON, settings().attributeModifiers(SwordItem.createAttributeModifiers(ToolMaterials.IRON, 6, -3.1F))));
+    public static final Item BLAZE_RUNNERS = register("blaze_runners", new ArmorItem(MaterialRegistry.BLAZE_RUNNERS, ArmorItem.Type.BOOTS, settings()));
     public static final Item GLIDE_BELT = register("glide_belt", new Item(settings().maxCount(1)));
 
     public static final Item FROG_EYE = register("frog_eye", new Item(settings()));

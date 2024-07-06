@@ -4,6 +4,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.projectile.SmallFireballEntity;
+import net.minecraft.util.math.Vec3d;
 import safro.mobs.entity.AscendantEntity;
 
 import java.util.EnumSet;
@@ -74,7 +75,8 @@ public class FirestormGoal extends Goal {
 
                     for (int i = 0; i < 6; i++) {
                         float offset = i % 2 == 0 ? 0.5F : -0.5F;
-                        SmallFireballEntity smallFireballEntity = new SmallFireballEntity(this.ascendant.getWorld(), this.ascendant, this.ascendant.getRandom().nextTriangular(e, 2.297 * h), f, this.ascendant.getRandom().nextTriangular(g, 2.297 * h));
+                        Vec3d vec3d = new Vec3d(this.ascendant.getRandom().nextTriangular(e, 2.297 * h), f, this.ascendant.getRandom().nextTriangular(g, 2.297 * h));
+                        SmallFireballEntity smallFireballEntity = new SmallFireballEntity(this.ascendant.getWorld(), this.ascendant, vec3d.normalize());
                         smallFireballEntity.setPosition(smallFireballEntity.getX() + offset, this.ascendant.getBodyY(0.5), smallFireballEntity.getZ());
                         this.ascendant.getWorld().spawnEntity(smallFireballEntity);
                     }

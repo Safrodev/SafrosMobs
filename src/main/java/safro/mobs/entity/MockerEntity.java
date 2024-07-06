@@ -52,10 +52,10 @@ public class MockerEntity extends HostileEntity {
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(CLONED, false);
-        this.dataTracker.startTracking(PLAYER_ID, Optional.empty());
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(CLONED, false);
+        builder.add(PLAYER_ID, Optional.empty());
     }
 
     public void clonePlayer(PlayerEntity player) {

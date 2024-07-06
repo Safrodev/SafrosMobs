@@ -2,6 +2,7 @@ package safro.mobs.entity;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -19,6 +20,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.DamageTypeTags;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
@@ -27,10 +29,10 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.constant.DefaultAnimations;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.List;
@@ -80,8 +82,11 @@ public class FlaphawkEntity extends PathAwareEntity implements GeoEntity {
         super.tick();
         if (this.getFirstPassenger() instanceof LivingEntity entity) {
             float f = (float) this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
-            if (entity.damage(this.getDamageSources().mobAttack(this), f)) {
-                this.applyDamageEffects(this, entity);
+            DamageSource source = this.getDamageSources().mobAttack(this);
+            if (entity.damage(source, f)) {
+                if (this.getWorld() instanceof ServerWorld serverWorld) {
+                    EnchantmentHelper.onTargetDamaged(serverWorld, entity, source);
+                }
                 this.getWorld().sendEntityStatus(this, (byte)13);
             }
         }
@@ -104,9 +109,9 @@ public class FlaphawkEntity extends PathAwareEntity implements GeoEntity {
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(CLOSED, true);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(CLOSED, true);
     }
 
     @Override

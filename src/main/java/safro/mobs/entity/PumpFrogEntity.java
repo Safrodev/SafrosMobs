@@ -16,6 +16,7 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.passive.FrogEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -24,9 +25,9 @@ import net.minecraft.world.WorldView;
 import safro.mobs.api.SimpleAnimatable;
 import safro.mobs.entity.ai.goal.JumpGoal;
 import safro.mobs.registry.SoundRegistry;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.constant.DefaultAnimations;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class PumpFrogEntity extends PathAwareEntity implements SimpleAnimatable {
@@ -37,11 +38,10 @@ public class PumpFrogEntity extends PathAwareEntity implements SimpleAnimatable 
         super(entityType, world);
         this.setPathfindingPenalty(PathNodeType.DANGER_FIRE, 16.0F);
         this.setPathfindingPenalty(PathNodeType.DAMAGE_FIRE, -1.0F);
-        this.setStepHeight(1.0F);
     }
 
     public static DefaultAttributeContainer.Builder createPumpFrogAttributes() {
-        return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.265D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0D);
+        return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.265D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0D).add(EntityAttributes.GENERIC_STEP_HEIGHT, 1.0D);
     }
 
     protected void initGoals() {
@@ -54,9 +54,9 @@ public class PumpFrogEntity extends PathAwareEntity implements SimpleAnimatable 
         this.targetSelector.add(1, new RevengeGoal(this));
     }
 
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(JUMP_COOLDOWN, 160);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(JUMP_COOLDOWN, 160);
     }
 
     @Override
@@ -69,17 +69,9 @@ public class PumpFrogEntity extends PathAwareEntity implements SimpleAnimatable 
 
     @Override
     public boolean tryAttack(Entity target) {
-        float f = (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
-        if (target instanceof LivingEntity) {
-            f += EnchantmentHelper.getAttackDamage(this.getMainHandStack(), ((LivingEntity)target).getGroup());
-        }
-
-        int i = EnchantmentHelper.getFireAspect(this);
-        if (i > 0) {
-            target.setOnFireFor(i * 4);
-        }
-
-        boolean bl = target.damage(this.getDamageSources().mobAttack(this), f);
+        DamageSource source = this.getDamageSources().mobAttack(this);
+        boolean bl = target.damage(source, (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE));
+        this.onAttacking(target);
         if (bl) {
             if (target instanceof LivingEntity) {
                 ((LivingEntity)target).takeKnockback(25.0D, MathHelper.sin(this.getYaw() * 0.017453292F), -MathHelper.cos(this.getYaw() * 0.017453292F));
@@ -87,8 +79,9 @@ public class PumpFrogEntity extends PathAwareEntity implements SimpleAnimatable 
                 this.setVelocity(this.getVelocity().multiply(0.6, 1.0, 0.6));
             }
 
-            this.applyDamageEffects(this, target);
-            this.onAttacking(target);
+            if (this.getWorld() instanceof ServerWorld serverWorld) {
+                EnchantmentHelper.onTargetDamaged(serverWorld, target, source);
+            }
         }
 
         return bl;

@@ -13,6 +13,7 @@ import safro.mobs.registry.*;
 import safro.saflib.SafLib;
 import software.bernie.geckolib.GeckoLib;
 
+// TODO: Add back Trinkets compat when it is out for 1.21
 public class SafrosMobs implements ModInitializer {
 	public static final String MODID = "safros-mobs";
     public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
@@ -24,7 +25,7 @@ public class SafrosMobs implements ModInitializer {
 		AutoConfig.register(SMConfig.class, JanksonConfigSerializer::new);
 
 		// Registry
-		GeckoLib.initialize();
+		MaterialRegistry.init();
 		EntityRegistry.init();
 		BlockItemRegistry.init();
 		SoundRegistry.init();

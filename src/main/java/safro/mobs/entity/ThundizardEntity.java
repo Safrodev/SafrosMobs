@@ -14,8 +14,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.world.World;
 import safro.mobs.api.SimpleAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class ThundizardEntity extends PathAwareEntity implements SimpleAnimatable, RangedAttackMob {
@@ -40,7 +40,7 @@ public class ThundizardEntity extends PathAwareEntity implements SimpleAnimatabl
     }
 
     @Override
-    public void attack(LivingEntity target, float pullProgress) {
+    public void shootAt(LivingEntity target, float pullProgress) {
         ThunderboltEntity bolt = new ThunderboltEntity(this.getWorld(), this);
         double d = target.getX() - this.getX();
         double e = target.getBodyY(0.3333333333333333) - bolt.getY();

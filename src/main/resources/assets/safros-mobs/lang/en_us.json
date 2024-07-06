@@ -37,5 +37,7 @@
   "text.safros-mobs.reaping_ring": "Grants life steal upon damaging mobs",
   "text.safros-mobs.slam_hammer": "Stuns enemies and slams them to the ground",
   "text.safros-mobs.blaze_runners": "Grants extra jump height and distance",
-  "text.safros-mobs.glide_belt": "Greatly enhances movement while in water"
+  "text.safros-mobs.glide_belt": "Greatly enhances movement while in water",
+
+  "effect.safros-mobs.stunned": "Stunned"
 }

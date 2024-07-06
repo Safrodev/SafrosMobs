@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.5-SNAPSHOT'
+	id 'fabric-loom' version '1.7-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -43,15 +43,15 @@ dependencies {
 	}
 
 	// REI (Runtime only)
-	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
-	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
-	modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin:${project.rei_version}"
+//	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
+//	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+//	modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin:${project.rei_version}"
 
 	// Geckolib
-	modImplementation "software.bernie.geckolib:geckolib-fabric-1.20.1:${project.geckolib_version}"
+	modImplementation "software.bernie.geckolib:geckolib-fabric-1.21:${project.geckolib_version}"
 
 	// Trinkets (Runtime only)
-	modCompileOnly modRuntimeOnly("dev.emi:trinkets:${project.trinkets_version}")
+//	modCompileOnly modRuntimeOnly("dev.emi:trinkets:${project.trinkets_version}")
 }
 
 loom {

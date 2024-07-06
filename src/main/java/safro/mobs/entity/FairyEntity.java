@@ -42,8 +42,8 @@ import safro.mobs.entity.ai.goal.FlyingHealGoal;
 import safro.mobs.entity.ai.goal.FlyingWanderGoal;
 import safro.mobs.registry.SoundRegistry;
 import safro.mobs.registry.TagRegistry;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class FairyEntity extends PassiveEntity implements SimpleAnimatable {
@@ -78,9 +78,9 @@ public class FairyEntity extends PassiveEntity implements SimpleAnimatable {
         return birdNavigation;
     }
 
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(HEAL_COOLDOWN, 0);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(HEAL_COOLDOWN, 0);
     }
 
     public void tickMovement() {

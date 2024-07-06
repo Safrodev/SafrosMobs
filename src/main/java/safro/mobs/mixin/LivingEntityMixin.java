@@ -1,6 +1,5 @@
 package safro.mobs.mixin;
 
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MovementType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,7 +12,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import safro.mobs.compat.TrinketsCompat;
 import safro.mobs.registry.BlockItemRegistry;
 import safro.mobs.registry.EntityRegistry;
 
@@ -52,11 +50,11 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private boolean hasBelt(PlayerEntity player) {
-        if (FabricLoader.getInstance().isModLoaded("trinkets")) {
-            if (TrinketsCompat.hasTrinket(player, BlockItemRegistry.GLIDE_BELT)) {
-                return true;
-            }
-        }
+//        if (FabricLoader.getInstance().isModLoaded("trinkets")) {
+//            if (TrinketsCompat.hasTrinket(player, BlockItemRegistry.GLIDE_BELT)) {
+//                return true;
+//            }
+//        }
         return player.getInventory().containsAny(Set.of(BlockItemRegistry.GLIDE_BELT));
     }
 }

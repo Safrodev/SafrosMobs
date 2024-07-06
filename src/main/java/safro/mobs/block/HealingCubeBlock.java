@@ -1,5 +1,6 @@
 package safro.mobs.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -22,12 +23,18 @@ import safro.mobs.block.entity.HealingCubeBlockEntity;
 import safro.mobs.registry.BlockItemRegistry;
 
 public class HealingCubeBlock extends BlockWithEntity implements Waterloggable {
+    public static final MapCodec<HealingCubeBlock> CODEC = createCodec(HealingCubeBlock::new);
     public static final VoxelShape SHAPE = Block.createCuboidShape(2, 0, 2, 14, 12, 14);
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
     public HealingCubeBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(WATERLOGGED, true));
+    }
+
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
     }
 
     @Override
@@ -38,7 +45,7 @@ public class HealingCubeBlock extends BlockWithEntity implements Waterloggable {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, BlockItemRegistry.HEALING_CUBE_BLOCK_ENTITY, world.isClient() ? HealingCubeBlockEntity::clientTick : HealingCubeBlockEntity::serverTick);
+        return validateTicker(type, BlockItemRegistry.HEALING_CUBE_BLOCK_ENTITY, world.isClient() ? HealingCubeBlockEntity::clientTick : HealingCubeBlockEntity::serverTick);
     }
 
     @Override

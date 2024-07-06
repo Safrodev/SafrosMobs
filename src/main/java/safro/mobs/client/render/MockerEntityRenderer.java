@@ -18,7 +18,7 @@ import safro.mobs.entity.MockerEntity;
 import java.util.Optional;
 
 public class MockerEntityRenderer extends LivingEntityRenderer<MockerEntity, PlayerEntityModel<MockerEntity>> {
-    private static final Identifier TEXTURE = new Identifier(SafrosMobs.MODID, "textures/entity/mocker.png");
+    private static final Identifier TEXTURE = Identifier.of(SafrosMobs.MODID, "textures/entity/mocker.png");
 
     public MockerEntityRenderer(EntityRendererFactory.Context ctx) {
         super(ctx, new PlayerEntityModel(ctx.getPart(EntityModelLayers.PLAYER), false), 0.5F);
@@ -35,7 +35,7 @@ public class MockerEntityRenderer extends LivingEntityRenderer<MockerEntity, Pla
         }
 
         Optional<AbstractClientPlayerEntity> player = world.getPlayers().stream().filter(p -> p.getUuid().equals(entity.getPlayerId().get())).findFirst();
-        return player.isPresent() ? player.get().getSkinTexture() : TEXTURE;
+        return player.isPresent() ? player.get().getSkinTextures().texture() : TEXTURE;
     }
 
     @Override

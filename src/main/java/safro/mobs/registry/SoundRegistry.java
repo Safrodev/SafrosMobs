@@ -25,8 +25,8 @@ public class SoundRegistry {
     public static final SoundEvent FAIRY_HEAL = register("fairy_heal");
 
     static SoundEvent register(String id) {
-        SoundEvent sound = SoundEvent.of(new Identifier(SafrosMobs.MODID, id));
-        Registry.register(Registries.SOUND_EVENT, new Identifier(SafrosMobs.MODID, id), sound);
+        SoundEvent sound = SoundEvent.of(Identifier.of(SafrosMobs.MODID, id));
+        Registry.register(Registries.SOUND_EVENT, Identifier.of(SafrosMobs.MODID, id), sound);
         return sound;
     }
 
