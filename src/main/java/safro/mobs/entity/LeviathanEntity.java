@@ -77,7 +77,7 @@ public class LeviathanEntity extends WaterCreatureEntity implements GeoEntity {
             if (this.getWorld() instanceof ServerWorld serverWorld) {
                 EnchantmentHelper.onTargetDamaged(serverWorld, target, source);
             }
-            this.playSound(SoundRegistry.LEVIATHAN_ATTACK, 0.8F, 1.0F);
+            this.playSound(SoundRegistry.LEVIATHAN_ATTACK, 0.4F, 1.0F);
         }
         return bl;
     }
@@ -126,14 +126,16 @@ public class LeviathanEntity extends WaterCreatureEntity implements GeoEntity {
     @Override
     public void mobTick() {
         super.mobTick();
-        List<BoatEntity> list = this.getWorld().getNonSpectatingEntities(BoatEntity.class, this.getBoundingBox().expand(1.0D));
-        for (BoatEntity entity : list) {
-            if (entity.getControllingPassenger() instanceof PlayerEntity) {
-                entity.emitGameEvent(GameEvent.ENTITY_DAMAGE, this);
-                if (this.getWorld().getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
-                    entity.dropItem(entity.asItem());
+        if (this.getWorld().getTime() % 20 == 0) {
+            List<BoatEntity> list = this.getWorld().getNonSpectatingEntities(BoatEntity.class, this.getBoundingBox().expand(1.0D));
+            for (BoatEntity entity : list) {
+                if (entity.getControllingPassenger() instanceof PlayerEntity && this.random.nextFloat() < 0.1F) {
+                    entity.emitGameEvent(GameEvent.ENTITY_DAMAGE, this);
+                    if (this.getWorld().getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
+                        entity.dropItem(entity.asItem());
+                    }
+                    entity.discard();
                 }
-                entity.discard();
             }
         }
     }

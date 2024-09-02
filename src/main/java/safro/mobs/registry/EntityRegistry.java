@@ -3,9 +3,11 @@ package safro.mobs.registry;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags;
-import net.minecraft.entity.*;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.SpawnLocationTypes;
+import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.WaterCreatureEntity;
 import net.minecraft.world.Heightmap;
 import safro.mobs.SafrosMobs;
 import safro.mobs.config.SMConfig;
@@ -30,8 +32,8 @@ public class EntityRegistry extends BaseEntityRegistry {
     public static void initRestrictions() {
         SpawnRestriction.register(GOBLIN_GRUNT, SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, GoblinGruntEntity::canSpawn);
         SpawnRestriction.register(FLAPHAWK, SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FlaphawkEntity::canSpawn);
-        SpawnRestriction.register(MOCKER, SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HostileEntity::canSpawnIgnoreLightLevel);
-        SpawnRestriction.register(LEVIATHAN, SpawnLocationTypes.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WaterCreatureEntity::canSpawn);
+        SpawnRestriction.register(MOCKER, SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SMUtil::canMockerSpawn);
+        SpawnRestriction.register(LEVIATHAN, SpawnLocationTypes.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SMUtil::canLeviathanSpawn);
         SpawnRestriction.register(THUNDIZARD, SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SMUtil::isValidSpawn);
         SpawnRestriction.register(FAIRY, SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SMUtil::isValidNaturalSpawn);
         SpawnRestriction.register(ASCENDANT, SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HostileEntity::canSpawnIgnoreLightLevel);
